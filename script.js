@@ -18,6 +18,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 //Function to generate secure password
 
@@ -38,13 +40,58 @@ function generatePassword() {
   numbers=confirm("Click 'OK' to use numbers");
   }
   //Validation if user does not select any criteria 
-  if (!uppercase && !lowercase && !symbols && !numbers) {
-    choices = alert("must choose atleast one criteria");
+  if (!uppercase && !lowercase && !symbols && !numbers){
+    choices = alert('You must choose atlease one criteria❗');
   }
 //Validation if user chooses all criteria 
   if (uppercase && lowercase && symbols && numbers){
     choices = symb.concat(nums, upperC, lowerC);
   }
+// Validation if user chooses 3 out of 4 
+ else if (lowercase && symbols && numbers){
+    choices= symb.concat(nums,lowerC);
+  }
+else if (uppercase && symbols && numbers){
+    choices = symb.concat(nums, upperC);
+  }
+else if (uppercase && lowercase && numbers){
+    choices = upperC.concat(nums, lowerC);
+  }
+else if (uppercase && lowercase && symbols){
+    choices = symb.concat(upperC, lowerC);
+  }
+// Validation if user chooses 2 out of 4
+else if (uppercase && lowercase){
+    choices = upperC.concat(lowerC);
+  }
+else if (uppercase && symbols){
+    choices = upperC.concat(symb);
+  }
+else if (uppercase && numbers){
+    choices = upperC.concat(nums);
+  }
+else if (lowercase && symbols){
+    choices = lowerC.concat(symb);
+  }
+else if (lowercase && numbers){
+    choices = lowerC.concat(nums);
+  }
+else if (numbers && symbols){
+    choices = nums.concat(symb);
+  }
+  // Validation if user only chooses one criteria
+ else if (uppercase){
+    choices = upperC
+  }
+ else if (lowercase){
+    choices = lowerC
+  }
+ else if (symbols){
+    choices = symb
+  }
+ else if (numbers){
+    choices = nums
+  };
 
  // password placeholder that will hold arrays  
  var password = [];
@@ -57,12 +104,9 @@ function generatePassword() {
    var passcode = password.join('');
    UserInput(passcode);
    return passcode;
-}
-// Retrives string to place into "password" placeholder
+ }
+// Retrives string "passcode" to input into "password" placeholder
 function UserInput(passcode) {
    document.getElementById("password").textContent = passcode;
- };
- 
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+  }
