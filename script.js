@@ -109,4 +109,4 @@ else if (numbers && symbols){
 function UserInput(passcode) {
    document.getElementById("password").textContent = passcode;
 
-  }
+} 
